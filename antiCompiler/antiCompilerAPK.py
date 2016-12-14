@@ -67,7 +67,6 @@ for i in range(len(filepathlist)):
             with open(apkdoc, "r") as fd:
                 s.add(apkdoc, fd.read())
             a, d, dx = s.get_objects_apk(apkdoc)
-            #a=apk.APK(TEST)
             d = dvm.DalvikVMFormat(a.get_dex())
         except KeyError,e:
             continue
