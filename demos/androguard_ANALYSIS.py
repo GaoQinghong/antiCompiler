@@ -9,9 +9,9 @@ sys.path.append(PATH_INSTALL + "./")
 
 from androguard.session import Session
 
-OUTPUT = "/Users/chengangbao/apkpackage/"
+OUTPUT = "/Users/gaoqinghong/Downloads/homework/MachineLearning/apk/"
 
-TEST = "/Users/chengangbao/apks/air.MagicMirror.apk"
+TEST = "/Users/gaoqinghong/Downloads/homework/MachineLearning/apk/bad/AbsoluteSystemRootTool_3.apk"
 
 
 def display_CFG(d, dx, classes):
@@ -99,7 +99,7 @@ apk,d,dx=s.analyzed_apk()
 print a.get_permissions()
 print d.get_fields()
 print d
-# print d.get_strings()
+print d.get_strings()
 # print d.get_regex_strings("access")
 # print d.get_regex_strings("(long).*2")
 # print d.get_regex_strings(".*(t\_t).*")

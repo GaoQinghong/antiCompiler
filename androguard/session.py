@@ -185,7 +185,6 @@ class Session(object):
         digest = self.analyzed_files.get(filename)
         if digest:
             a = self.analyzed_apk[digest[0]][0]
-
             d = None
             dx = None
 
