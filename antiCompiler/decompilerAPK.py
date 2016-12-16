@@ -36,22 +36,23 @@ outputPath='/Users/gaoqinghong/Downloads/homework/MachineLearning'
 
 
 # TEST = "/Users/chengangbao/apks/air.MagicMirror.apk"
-apklist=[]
-
-for (dirpath, dirnames, filenames) in os.walk(soft):
-    # for dirname in dirnames:
-    #     print('dirname = ' + dirname)
-    for filename in filenames:
-        apkpath=os.path.join(dirpath, filename)
-        apklist.append(apkpath)
-del apklist[0]
+# apklist=[]
+#
+# for (dirpath, dirnames, filenames) in os.walk(soft):
+#     # for dirname in dirnames:
+#     #     print('dirname = ' + dirname)
+#     for filename in filenames:
+#         apkpath=os.path.join(dirpath, filename)
+#         apklist.append(apkpath)
+# del apklist[0]
 # print len(apklist)
 # for i in range(998,1003):
 #     print apklist[i]
 # cmd1="sh /Users/chengangbao/apkpackage/dex2jar-2.0/d2j-dex2jar.sh {0}".format(apklist[10])
 # os.system(cmd1)
 
-# for i in range(len(apklist)):
+
+
 for i in range(990,1010):
     apkdoc=apklist[i]
     # s = Session()
@@ -61,8 +62,8 @@ for i in range(990,1010):
     a=apk.APK(apkdoc)
     d = dvm.DalvikVMFormat(a.get_dex())
     aly = analysis.newVMAnalysis(d)
-    print get_apis(a, d, aly)
-    #print a.get_permissions()
+    # print get_apis(a, d, aly)
+    # print a.get_permissions()
     # print i
     # print 'min_sdk_version: ',a.get_min_sdk_version()
     # print 'androidversion_code: ',a.get_androidversion_code()

@@ -2,8 +2,18 @@
 from androguard.core.bytecodes import apk
 from  androguard.core.bytecodes import dvm
 from androguard import session
-import pandas as pd
+from sklearn.svm import SVC
+from sklearn import svm
+from sklearn.model_selection import cross_val_score
+from  sklearn.naive_bayes import  GaussianNB
+from  sklearn.model_selection import cross_val_predict
+from sklearn.model_selection import train_test_split
+from sklearn import metrics
+from sklearn import cross_validation
 import numpy as np
+import pandas as pd
+
+
 import csv
 import os
 import string
@@ -63,21 +73,41 @@ import string
 
 
 if __name__=='__main__':
-    dictionary = {}
-    with open('/Users/gaoqinghong/Desktop/permission.csv','r') as f:
-        for line in f:
-            string = line.split('|')
-            dictionary[string[0]] = string[1:]
-    features = set()
-    for i in iter(dictionary):
-        features = features.union(set(dictionary[i][1:]))
-    print len(features)
-    features.add('label')
-    df = pd.DataFrame(data=np.zeros((len(dictionary.keys()),len(features)),dtype=int),index=dictionary.keys(),columns=features)
-    for key in iter(dictionary):
-        df.loc[key,dictionary[key][1:]] = 1
-        df.loc[key,'lable'] = dictionary[key][0]
-    df.to_csv('./features.csv')
+    df = pd.read_csv('/Users/gaoqinghong/Downloads/homework/MachineLearning/features.csv',sep=',')
+    clf = svm.LinearSVC()
+    # print df.iloc[:1200,:-1]
+    # print '********************'
+    # print df.iloc[:1200,-1]
+    # print '###########'
+    # print '###############'
+    #Gnb = GaussianNB()
+    X = np.array(df.iloc[:1200,1:-2])
+    Y = np.array(df.iloc[:1200,-1])
+    scores = cross_val_score(clf,X,Y,cv=10)
+    print scores
+    print 'accuracy:',scores.mean()
+    print 'max: ',scores.max()
+    X_train,X_test,Y_train,Y_test = train_test_split(X,Y,test_size=0.3,random_state=0)
+    clf.fit(X_train,Y_train)
+    #print Gnb.score(X_test,Y_test)
+    # print metrics.accuracy_score(trueY,clf.predict(predictX))
+    #
 
 
+
+#     dictionary = {}
+#     with open('/Users/gaoqinghong/Desktop/permission.csv','r') as f:
+#         for line in f:
+#             string = line.split('|')
+#             dictionary[string[0]] = string[1:]
+#     features = set()
+#     for i in iter(dictionary):
+#         features = features.union(set(dictionary[i][1:]))
+#     print len(features)
+#     #features.add('label')
+#     df = pd.DataFrame(data=np.zeros((len(dictionary.keys()),len(features)),dtype=int),index=dictionary.keys(),columns=features)
+#     for key in iter(dictionary):
+#         df.loc[key,dictionary[key][1:]] = 1
+#         df.loc[key,'lable'] = dictionary[key][0]
+#     df.to_csv('/Users/gaoqinghong/Desktop/features.csv')
 
