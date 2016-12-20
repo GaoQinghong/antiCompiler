@@ -36,7 +36,7 @@ outputPath='/Users/gaoqinghong/Downloads/homework/MachineLearning'
 
 
 # TEST = "/Users/chengangbao/apks/air.MagicMirror.apk"
-# apklist=[]
+apklist=[]
 #
 # for (dirpath, dirnames, filenames) in os.walk(soft):
 #     # for dirname in dirnames:
